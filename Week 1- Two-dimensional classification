@@ -1,0 +1,39 @@
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+
+import sys
+sys.path.append("..")
+import grading
+grader = grading.Grader(assignment_key="UaHtvpEFEee0XQ6wjK-hZg", 
+                      all_parts=["xU7U4", "HyTF6", "uNidL", "ToK7N", "GBdgZ", "dLdHG"])
+                     
+with open('train.npy', 'rb') as fin:
+    X = np.load(fin)
+    
+with open('target.npy', 'rb') as fin:
+    y = np.load(fin)
+
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired, s=20)
+plt.show()
+
+def expand(X):
+    """
+    Adds quadratic features. 
+    This expansion allows your linear model to make non-linear separation.
+    
+    For each sample (row in matrix), compute an expanded row:
+    [feature0, feature1, feature0^2, feature1^2, feature0*feature1, 1]
+    
+    :param X: matrix of features, shape [n_samples,2]
+    :returns: expanded features of shape [n_samples,6]
+    """
+    X_expanded = np.zeros((X.shape[0], 6))
+        
+    # TODO:<your code here>
+    i=0
+    for e in X:
+        X_expanded[i]=[e[0],e[1],e[0]**2,e[1]**2,e[0]*e[1],1]
+        i+=1
+    
+    return X_expanded
