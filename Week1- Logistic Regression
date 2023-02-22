@@ -1,0 +1,18 @@
+def probability(X, w):
+    """
+    Given input features and weights
+    return predicted probabilities of y==1 given x, P(y=1|x), see description above
+        
+    Don't forget to use expand(X) function (where necessary) in this and subsequent functions.
+    
+    :param X: feature matrix X of shape [n_samples,6] (expanded)
+    :param w: weight vector w of shape [6] for each of the expanded features
+    :returns: an array of predicted probabilities in [0,1] interval.
+    """
+
+    # TODO:<your code here>
+    z = np.dot(X,w)
+    
+    a = 1./(1+np.exp(-z))
+    
+    return np.array(a)
